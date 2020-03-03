@@ -1,6 +1,6 @@
 const options = {
-    host: '',
-    database: ''
+    host: 'localhost',
+    database: 'class_survey'
 }
 
 const pgp = require('pg-promise')({

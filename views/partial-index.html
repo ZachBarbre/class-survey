@@ -1,11 +1,24 @@
-<div class="control">
-    <label class="radio">Label</label>
-    <label class="radio button">
-      <input type="radio" name="foobar">
-      Foo
-    </label>
-    <label class="radio">
-      <input type="radio" name="foobar" checked>
-      Bar
-    </label>
-  </div>
+
+<form name="survey-form" action="/update" method="POST">
+    ${classInfoData.map(entry => {
+        return `<div class="columns">
+                    <div class="column is-one-fifth">
+                        <p class="subtitle is-pulled-right">${entry.name}</p>
+                    </div>
+                    <div class="column">
+                        <div class="control">
+                            ${classStatuses.map(status => {
+                                return `<label class="radio button ${entry.status_title === status.status_title ? 'is-primary' : ''}"> ${status.status_title}
+                                            <input type="radio" name="${entry.name}" value="${status.id}"
+                                            ${entry.status_title === status.status_title ? 'checked' : ''}>
+                                        </label>` 
+                                    }).join('')}
+                        </div>
+                    </div>
+                </div>`
+    }).join('')
+}
+    <div class="content center">
+        <button class="button is-link" type="submit">Submit</button>
+    </div>
+</form> 
